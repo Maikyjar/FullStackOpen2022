@@ -1,0 +1,15 @@
+initial
+user: write something in the text field
+user: press save
+
+developing
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: HTTP GET location: /exampleapp/new_note_spa
+browser: reload the page notes
+
+end
+new_note
+    requests payload:
+    content
+    date
+

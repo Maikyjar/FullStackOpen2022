@@ -1,0 +1,19 @@
+initial
+user: write something in the text field
+user: press save
+
+developing
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+server-->browser: HTTP GET location: /exampleapp/notes
+browser: reload the page notes
+
+end
+after the reload cause the three requests already known
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note.
