@@ -7,11 +7,11 @@ export default function Country ({name, capital, population, languages, flag, co
 
     const [weather, setWeather] = useState(null);
 
-    
+    const apiKey = process.env.REACT_APP_API_KEY;
 
     useEffect(() => {
         const params = {
-          access_key: '293ddaa2128192e682bb3161f8070695',
+          access_key: apiKey,
           query: capital[0].toLowerCase()
         }
         axios

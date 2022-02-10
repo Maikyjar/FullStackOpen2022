@@ -6,9 +6,6 @@ export default function App() {
   const [countries, setCountries] = useState([])
   const [country, setCountry] = useState('');
 
-  const api_key = process.env.REACT_APP_API_KEY
-  console.log(api_key);
-
   useEffect(() => {
     console.log('effect')
     axios
