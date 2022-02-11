@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Filter from './components/Filter';
+import { Container, Navbar, Form, Col, Row} from 'react-bootstrap'
 
 export default function App() {
   const [countries, setCountries] = useState([])
   const [country, setCountry] = useState('');
 
   useEffect(() => {
-    console.log('effect')
     axios
       .get('https://restcountries.com/v3.1/all')
       .then(response => {
@@ -22,10 +22,31 @@ export default function App() {
 
   return (
     <div>
-      Find countries <input type = "text" placeholder="Search..." id="formulario"
-      onChange={event => setCountry(event.target.value)}></input>
-      <div>
-          <Filter countries={countries} country={country} onDetails={onDetails}/>
+      <Navbar bg="primary" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">Countries</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <br />
+      <div className='container'>
+        <Row>
+          <Form.Label column="lg" lg={2}>
+            Find countries:
+          </Form.Label>
+          <Col xs={5}>
+            <Form.Control
+              className="me-2"
+              aria-label="Search"
+              type = "search" 
+              placeholder="Search..." 
+              id="formulario"
+              onChange={event => setCountry(event.target.value)}/>
+          </Col>
+        </Row>
+        <br />
+        <div>
+            <Filter countries={countries} country={country} onDetails={onDetails}/>
+        </div>
       </div>
     </div>
   )

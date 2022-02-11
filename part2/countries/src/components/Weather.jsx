@@ -9,6 +9,7 @@ export default function Weather ({weather}) {
             <img src= {weather.current.weather_icons} alt='weather'></img>
             <p>Status: {weather.current.weather_descriptions}</p>
             <p>wind: {weather.current.wind_speed}mph direction {weather.current.wind_dir}</p>
+            <p>{weather.request.query} Local Time {weather.location.localtime}</p>
         </div>
     )
 }
