@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Filter from './components/Filter';
-import { Container, Navbar, Form, Col, Row} from 'react-bootstrap'
+import { Container, Navbar, Form, Col, Row, Nav} from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
+import About from './components/About';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+
 
 export default function App() {
   const [countries, setCountries] = useState([])
@@ -21,33 +29,48 @@ export default function App() {
   };
 
   return (
-    <div>
+    <Router>
       <Navbar bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Countries</Navbar.Brand>
+          <Navbar.Brand >Countries</Navbar.Brand>
+          <Nav className="me-auto">
+            <LinkContainer to="/">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="about">
+              <Nav.Link>About</Nav.Link>
+            </LinkContainer>
+          </Nav>
         </Container>
       </Navbar>
       <br />
-      <div className='container'>
-        <Row>
-          <Form.Label column="lg" lg={2}>
-            Find countries:
-          </Form.Label>
-          <Col xs={5}>
-            <Form.Control
-              className="me-2"
-              aria-label="Search"
-              type = "search" 
-              placeholder="Search..." 
-              id="formulario"
-              onChange={event => setCountry(event.target.value)}/>
-          </Col>
-        </Row>
-        <br />
-        <div>
-            <Filter countries={countries} country={country} onDetails={onDetails}/>
+      <Routes>
+        <Route path='about' element={<About />}>
+        </Route>
+        <Route path='/'
+        element={
+        <div className='container'>
+          <Row>
+            <Form.Label column="lg" lg={2}>
+              Find countries:
+            </Form.Label>
+            <Col xs={5}>
+              <Form.Control
+                className="me-2"
+                aria-label="Search"
+                type = "search" 
+                placeholder="Search..."
+                autoComplete="off"
+                id="formulario"
+                onChange={event => setCountry(event.target.value)}/>
+            </Col>
+          </Row>
+          <br />
+          <Filter countries={countries} country={country} onDetails={onDetails}/>
         </div>
-      </div>
-    </div>
+        }>
+        </Route>
+      </Routes>
+    </Router>
   )
 }
