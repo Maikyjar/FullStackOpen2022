@@ -21,7 +21,7 @@ export default function Country ({name, capital, population, languages, flag, co
             const data = response.data
             setWeather(data)
           }).catch(console.log)
-      }, [])
+      }, [apiKey,capital])
 
     return (
       <Container>
